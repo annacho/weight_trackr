@@ -1,0 +1,14 @@
+- @weights.each do |w|
+  %tr{id: w.id}
+    %td.stat_data.weight_cell= weight.weight_date
+    %td.stat_data.weight_cell= pretty_time(run.run_time)
+    %td.stat_data.weight_cell= run.distance
+    %td.stat_data.weight_cell= pretty_pace(run.per_mile_pace)
+    %td= button_to "Details", weight_path(weight), class: "btn btn-default", method: :get, :remote=>true
+    %td
+      %button{id: "edit_button", class: "btn btn-default", data: {"weight-id" => weight.id}}
+        Edit
+    %td
+      %button{class: "btn btn-default delete_button", data: {"weight-id" => weight.id}}
+        Delete 
+    
