@@ -1,59 +1,28 @@
-/ .well
-/   %h4.stat_title
-/     %span.filter_name Lifetime
-/     Stats 
-/   .nav.nav-pills.stat_dropdown
-/     %li.dropdown
-/       %a.dropdown_link.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-/         Filter by
-/         %span.caret
-/       %ul.dropdown-menu
-/         %li
-/           %a{id: "last_seven", href: "#"} The Last Seven Days
-/         %li
-/           %a{id: "last_thirty", href: "#"} The Last Thirty Days
-/         %li
-/           %a{id: "year", href: "#"} This Year's Stats
-/         %li
-/           %a{id: "lifetime", href: "#"} Lifetime Stats
-/   %table.table.stats_table  
-/     %thead
-/       %tr
-/         %th.stat_header
-/           / .glyphicon.glyphicon-th 
-/           Total Runs
-/         %th.stat_header
-/           / .glyphicon.glyphicon-dashboard 
-/           Total Time
-/         %th.stat_header
-/           / .glyphicon.glyphicon-road
-/           Total Distance
-/         %th.stat_header
-/           / .glyphicon.glyphicon-time
-/           Average Pace
+.well
+	= area_chart Weight.group_by_day(:weight_date).maximum(:weight)
 
 .col-md-6.col-md-offset-3
-  =link_to "NEW WEIGHT", new_weight_path, remote: true, id: 'create_button', class: "btn btn-lg btn-block btn-warning"
+	=link_to "NEW WEIGHT", new_weight_path, remote: true, id: 'create_button', class: "btn btn-lg btn-block btn-warning"
 %br
 %br
 %br
 %br
 %h3.weight_title My Weights
 %table.table
-  %thead
-    %tr
-      %th
-        DATE
-      %th
-        TIME
-      %th 
-        WEIGHT (LBS.)
-  %tbody#run_table_body
-    = render 'weights/weight_table_body'
+	%thead
+		%tr
+			%th
+				DATE
+			%th
+				TIME
+			%th 
+				WEIGHT (LBS.)
+	%tbody#run_table_body
+		= render 'weights/weight_table_body'
 .pagination_nav
-  #paginator
-    = render @weights, remote: true
-   
+	#paginator
+		= render @weights, remote: true
+	 
 #show_modal.modal_custom
 
 #create_modal.modal_custom
